@@ -1,0 +1,44 @@
+---
+title: "Other Observations"
+---
+```{r}
+library(tidyverse)
+```
+
+#Loudness & Energy Graph
+```{r}
+song_data <- read.csv("song_data.csv")
+
+head(song_data)
+
+loudness <- "loudness"  
+energy <- "energy"  
+
+song_data <- song_data %>%
+  select(all_of(c(loudness, energy))) %>%
+  na.omit()
+
+ggplot(song_data, aes_string(x = loudness, y = energy)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "loess", se = FALSE, color = "blue")
+  ggtitle(paste("Comparison between", loudness, "and", energy)) +
+  theme_minimal()
+```
+
+#Danceability
+```{r}
+song_data <- read.csv("song_data.csv")
+
+danceability_column <- "danceability"
+
+song_data <- song_data %>%
+  select(all_of(danceability_column)) %>%
+  na.omit()
+
+ggplot(song_data, aes_string(x = danceability_column)) +
+  geom_density() +
+  ggtitle("Density Plot of Song Danceability") +
+  xlab("Song Danceability") +
+  theme_minimal()
+```
+

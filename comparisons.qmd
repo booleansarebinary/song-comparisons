@@ -1,0 +1,115 @@
+---
+title: "Comparisons"
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+#Song Duration
+```{r}
+song_data <- read.csv("song_data.csv")
+
+popularity_column <- "song_popularity"
+duration_column <- "song_duration_ms"
+
+song_data <- song_data %>%
+  select(all_of(c(popularity_column, duration_column))) %>%
+  na.omit()
+
+ggplot(song_data, aes_string(x = duration_column, y = popularity_column)) +
+  geom_point(alpha = 0.5) +
+  ggtitle("Song Popularity vs. Song Duration") +
+  xlab("Song Duration (ms)") +
+  ylab("Song Popularity") +
+  theme_minimal()
+
+```
+
+#Acousticness
+
+```{r}
+song_data <- read.csv("song_data.csv")
+
+popularity_column <- "song_popularity"
+acousticness_column <- "acousticness"
+
+song_data <- song_data %>%
+  select(all_of(c(popularity_column, acousticness_column))) %>%
+  na.omit()
+
+ggplot(song_data, aes(x = acousticness, y = song_popularity)) +
+  geom_density_2d(color = "blue") +
+  stat_density_2d(aes(fill = ..level..), geom = "polygon") +
+  scale_fill_viridis_c() +  # Color scale
+  ggtitle("Acousticness vs. Song Popularity") +
+  xlab("Acousticness") +
+  ylab("Song Popularity") +
+  theme_minimal()
+
+```
+
+#Danceability
+```{r}
+song_data <- read.csv("song_data.csv")
+
+popularity_column <- "song_popularity"
+danceability_column <- "danceability"
+
+song_data <- song_data %>%
+  select(all_of(c(popularity_column, danceability_column))) %>%
+  na.omit()
+
+
+ggplot(song_data, aes_string(x = danceability_column, y = popularity_column)) +
+  geom_hex() +
+  ggtitle("Song Popularity vs. Song Danceability") +
+  xlab("Song Danceability") +
+  ylab("Song Popularity") +
+  theme_minimal()
+```
+
+#Key
+
+```{r}
+song_data <- read.csv("song_data.csv")
+
+popularity_column <- "song_popularity"
+key_column <- "key"
+
+song_data <- song_data %>%
+  select(key_column, popularity_column) %>%
+  na.omit()
+
+key_labels <- c("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
+song_data[[key_column]] <- factor(song_data[[key_column]], levels = 0:11, labels = key_labels)
+
+ggplot(song_data, aes_string(x = key_column, y = popularity_column)) +
+  geom_point(alpha = 0.5) +
+  ggtitle("Song Popularity vs. Song Key") +
+  xlab("Song Key") +
+  ylab("Song Popularity") +
+  theme_minimal()
+```
+
+#Loudness
+```{r}
+song_data <- read.csv("song_data.csv")
+
+popularity_column <- "song_popularity"
+loudness_column <- "loudness"
+
+song_data <- song_data %>%
+  select(loudness_column, popularity_column) %>%
+  na.omit()
+
+ggplot(song_data, aes_string(x = loudness_column, y = popularity_column)) +
+  geom_point(alpha = 0.5) +
+  ggtitle("Song Popularity vs. Song Loudness") +
+  xlab("Song Loudness") +
+  ylab("Song Popularity") +
+  theme_minimal()
+```
+
+

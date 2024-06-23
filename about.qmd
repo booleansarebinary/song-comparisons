@@ -1,0 +1,13 @@
+---
+title: "About"
+---
+
+About Me
+
+Hi! I'm Annika Shivam, a rising senior in Austin, Texas; I hope to major in computer science in college.
+
+I created this project because I've always been interested in figuring out what makes a song popular and was excited to use data science help me explore it deeper. GITHUB PAGE LINKS HERE. If you have any questions about this project, please email me at booleansarebinary@gmail.com.
+
+This project was created as a part of Kane's Data Science Bootcamp (https://bootcamp.davidkane.info/).
+
+

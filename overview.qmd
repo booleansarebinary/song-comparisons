@@ -1,0 +1,55 @@
+---
+title: "Overview"
+---
+```{r}
+library(tidyverse)
+```
+
+#Key Graph
+```{r}
+song_data <- read.csv("song_data.csv")
+
+head(song_data)
+
+key_column <- "key"
+
+song_data <- song_data %>%
+  select(all_of(key_column)) %>%
+  na.omit()
+
+key_labels <- c("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
+song_data[[key_column]] <- factor(song_data[[key_column]], levels = 0:11, labels = key_labels)
+
+key_frequency <- table(song_data[[key_column]])
+key_frequency_df <- as.data.frame(key_frequency)
+colnames(key_frequency_df) <- c("Key", "Frequency")
+
+ggplot(key_frequency_df, aes(x = Key, y = Frequency)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Frequency of Each Key in the Dataset") +
+  xlab("Key") +
+  ylab("Frequency") +
+  theme_minimal()
+
+```
+
+#Acousticness
+
+```{r}
+song_data <- read.csv("song_data.csv")
+
+popularity_column <- "song_popularity"
+acousticness_column <- "acousticness"
+
+song_data <- song_data %>%
+  select(all_of(c(popularity_column, acousticness_column))) %>%
+  na.omit()
+
+ggplot(song_data, aes(acousticness)) +
+  geom_histogram(binwidth = 0.05, fill = "lightblue", color = "black") +
+  ggtitle("Distribution of Acousticness") +
+  xlab("Acousticness") +
+  ylab("Frequency") +
+  theme_minimal()
+
+```
