@@ -1,4 +1,11 @@
 ---
 title: "Sources"
 ---
-Details about sources
+## Data
+The data was taken from [this Kaggle Dataset](https://www.kaggle.com/datasets/yasserh/song-popularity-dataset). It used the Spotify API to gain data on each song's popularity and other factors in the dataset. I also used Chat GPT for help in creating this website.
+
+## Kaggle
+Kaggle is a data science community with platforms for data science competitions, comphrehensive datasets, and tutorials and free AI/ML models for users to develop skills in data science.
+
+## Spotify
+Spotify is the leading streaming music service. It has about as many users as ___ has plays on Spotify (~615 million). 

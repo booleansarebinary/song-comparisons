@@ -1,8 +1,38 @@
 ---
 title: "What Makes a Song Popular?"
+execute:
+  echo: false
 ---
 
-Paragraph summary goes here.
+If "Baby Shark" can be on the Billboard Global 200 for over 180 weeks yet "Stairway to Heaven" can bore the first live audience it was ever played to, is there a way to analytically determine song popularity? To understand this, the following data was pulled from a Kaggle dataset which used the Spotify API. Then, relevant factors were analyzed and graphed to understand the dataset and what influences song popularity. 
 
-Plot:
+Most musical factors studied here don't have a large effect on song popularity, but two that do include song loudness and song duration: popular songs tend to be shorter and louder.
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+
+song_data <- read.csv("song_data.csv")
+
+popularity_column <- "song_popularity"
+duration_column <- "song_duration_ms"
+
+song_data <- song_data %>%
+  select(all_of(c(popularity_column, duration_column))) %>%
+  na.omit()
+
+ggplot(song_data, aes_string(x = duration_column, y = popularity_column)) +
+  geom_point(color = "forestgreen",      # Set point color
+             alpha = 0.4,             # Set point transparency
+             size = 3) +
+  ggtitle("Song Popularity vs. Song Duration") +
+  xlab("Song Duration (ms)") +
+  ylab("Song Popularity") +
+  theme_minimal() + theme(                             
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 12)                              
+  )
+```
 

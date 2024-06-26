@@ -3,8 +3,8 @@
 .RData
 .Ruserdata
 
-*Rproj
-
-
 /.quarto/
+*Rproj
+/.DS_Store
+*_files/
 _site

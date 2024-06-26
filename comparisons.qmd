@@ -1,14 +1,18 @@
 ---
 title: "Comparisons"
+execute: 
+  echo: false
 ---
 
 ```{r}
+#| warning: false
 library(tidyverse)
 ```
 
 
-#Song Duration
+## Song Duration
 ```{r}
+#| warning: false
 song_data <- read.csv("song_data.csv")
 
 popularity_column <- "song_popularity"
@@ -19,17 +23,25 @@ song_data <- song_data %>%
   na.omit()
 
 ggplot(song_data, aes_string(x = duration_column, y = popularity_column)) +
-  geom_point(alpha = 0.5) +
+  geom_point(color = "forestgreen",      # Set point color
+             alpha = 0.4,             # Set point transparency
+             size = 3) +
   ggtitle("Song Popularity vs. Song Duration") +
   xlab("Song Duration (ms)") +
   ylab("Song Popularity") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(                             
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 11)                              
+  )
 
 ```
 
-#Acousticness
+## Acousticness
 
 ```{r}
+#| warning: false
 song_data <- read.csv("song_data.csv")
 
 popularity_column <- "song_popularity"
@@ -40,18 +52,24 @@ song_data <- song_data %>%
   na.omit()
 
 ggplot(song_data, aes(x = acousticness, y = song_popularity)) +
-  geom_density_2d(color = "blue") +
+  geom_density_2d(color = "white") +
   stat_density_2d(aes(fill = ..level..), geom = "polygon") +
   scale_fill_viridis_c() +  # Color scale
   ggtitle("Acousticness vs. Song Popularity") +
   xlab("Acousticness") +
   ylab("Song Popularity") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(                             
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 11)                              
+  )
 
 ```
 
-#Danceability
+## Danceability
 ```{r}
+#| warning: false
 song_data <- read.csv("song_data.csv")
 
 popularity_column <- "song_popularity"
@@ -63,16 +81,23 @@ song_data <- song_data %>%
 
 
 ggplot(song_data, aes_string(x = danceability_column, y = popularity_column)) +
-  geom_hex() +
+  geom_hex(color = "white") +
+  scale_fill_gradient(low = "pink", high = "#d21f3c") + 
   ggtitle("Song Popularity vs. Song Danceability") +
   xlab("Song Danceability") +
   ylab("Song Popularity") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(                             
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 11)                              
+  )
 ```
 
-#Key
+## Key
 
 ```{r}
+#| warning: false
 song_data <- read.csv("song_data.csv")
 
 popularity_column <- "song_popularity"
@@ -90,11 +115,17 @@ ggplot(song_data, aes_string(x = key_column, y = popularity_column)) +
   ggtitle("Song Popularity vs. Song Key") +
   xlab("Song Key") +
   ylab("Song Popularity") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(                             
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 11)                              
+  )
 ```
 
-#Loudness
+## Loudness
 ```{r}
+#| warning: false
 song_data <- read.csv("song_data.csv")
 
 popularity_column <- "song_popularity"
@@ -105,11 +136,18 @@ song_data <- song_data %>%
   na.omit()
 
 ggplot(song_data, aes_string(x = loudness_column, y = popularity_column)) +
-  geom_point(alpha = 0.5) +
+  geom_point(color = "#c09567",      # Set point color
+             alpha = 0.4,             # Set point transparency
+             size = 2) +
   ggtitle("Song Popularity vs. Song Loudness") +
   xlab("Song Loudness") +
   ylab("Song Popularity") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(                             
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 11)                              
+  )
 ```
 
 

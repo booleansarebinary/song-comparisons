@@ -1,1 +1,16 @@
 /* css styles */
+
+.navbar {
+  background-color: #1f8a20;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff; /* Link text color */
+    font-family: Tahoma, sans-serif;
+}
+
+.navbar-title {
+    color: #000; /* Black color */
+    font-family: Tahoma, sans-serif;
+    font-weight: bold;
+}

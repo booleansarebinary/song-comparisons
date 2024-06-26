@@ -1,15 +1,20 @@
 ---
 title: "Overview"
+execute:
+  echo: false
 ---
 ```{r}
+#| warning: false
 library(tidyverse)
 ```
 
-#Key Graph
-```{r}
-song_data <- read.csv("song_data.csv")
+## Keys
 
-head(song_data)
+The general twelve musical keys have varying levels of frequency; D# is the lowest.
+
+```{r}
+#| warning: false
+song_data <- read.csv("song_data.csv")
 
 key_column <- "key"
 
@@ -25,17 +30,25 @@ key_frequency_df <- as.data.frame(key_frequency)
 colnames(key_frequency_df) <- c("Key", "Frequency")
 
 ggplot(key_frequency_df, aes(x = Key, y = Frequency)) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity", fill = "#c09567") +
   ggtitle("Frequency of Each Key in the Dataset") +
   xlab("Key") +
   ylab("Frequency") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(                             
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 11)                              
+  )
 
 ```
 
-#Acousticness
+## Acousticness
+
+Acousticness is a confidence measure of whether the song uses acoustic instruments (like a guitar) as opposed to electric instruments.
 
 ```{r}
+#| warning: false
 song_data <- read.csv("song_data.csv")
 
 popularity_column <- "song_popularity"
@@ -46,10 +59,15 @@ song_data <- song_data %>%
   na.omit()
 
 ggplot(song_data, aes(acousticness)) +
-  geom_histogram(binwidth = 0.05, fill = "lightblue", color = "black") +
+  geom_histogram(binwidth = 0.05, fill = "pink", color = "white") +
   ggtitle("Distribution of Acousticness") +
   xlab("Acousticness") +
   ylab("Frequency") +
-  theme_minimal()
+  theme_minimal() + 
+  theme(                             
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5), 
+    axis.title = element_text(size = 14, face = "bold"),               
+    axis.text = element_text(size = 11)                              
+  )
 
 ```
